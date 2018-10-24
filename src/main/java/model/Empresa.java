@@ -34,6 +34,11 @@ public class Empresa {
         this.razaoSocial = razaoSocial;
         this.cidade = cidade;
     }
+
+    @Override
+    public String toString() {
+        return nomeFantasia;
+    }
     
     
 

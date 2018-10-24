@@ -38,23 +38,40 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//       
+       
 //        cidade = new Cidade("Piraí do Sul", "PS");
 //        cidadeRepository.save(cidade);
 //        empresa = new Empresa("83276137000109", "Mercado Fanelli", "Mercade Fanelli",cidade);
 //        empresaRepository.save(empresa);
-//        meses = new Meses("05","2018", 28, 527.25, 7.89, empresa);
+//        meses = new Meses("05","2018", 28, 527.25, 7.89);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses);
+//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
-         
+//         
 //        cidade = new Cidade("Ponta Grossa", "PG");
 //        cidadeRepository.save(cidade);
 //        empresa = new Empresa("83276687000109", "SuperMercado Condor", "SuperMercado Condor",cidade);
 //        empresaRepository.save(empresa);
-//        meses = new Meses("05","2018", 58, 1277.25, 28.38, empresa);
+//        meses = new Meses("05","2018", 58, 1277.25, 28.38);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses);
+//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresaRepository.save(mesEmpresa);
+//         cidade = new Cidade("Castro", "CST");
+//        cidadeRepository.save(cidade);
+//        empresa = new Empresa("83276131000109", "Posto do Mel", "Posto do Mel",cidade);
+//        empresaRepository.save(empresa);
+//        meses = new Meses("06","2018", 22, 685.25, 9.89);
+//        mesesRepository.save(meses);
+//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresaRepository.save(mesEmpresa);
+//         
+//        cidade = new Cidade("Carambeí", "CRB");
+//        cidadeRepository.save(cidade);
+//        empresa = new Empresa("83276557000109", "SuperMercado Rickli", "SuperMercado Rickli",cidade);
+//        empresaRepository.save(empresa);
+//        meses = new Meses("05","2018", 78, 1357.25, 32.38);
+//        mesesRepository.save(meses);
+//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
     }    
 }

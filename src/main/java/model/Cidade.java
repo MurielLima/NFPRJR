@@ -48,6 +48,13 @@ public class Cidade {
     }
 
     @Override
+    public String toString() {
+        return nome;
+    }
+
+    
+    
+    @Override
     public int hashCode() {
         int hash = 7;
         hash = 23 * hash + (this.idCidade != null ? this.idCidade.hashCode() : 0);

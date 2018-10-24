@@ -20,18 +20,27 @@ public class MesEmpresa {
     private String ano;
     private String mes;
     @DBRef
-    private Meses meses;
+    private Empresa empresa;
+    private int totalNotas;
+    private double totalValor;
+    private double totalCredito;
+ 
 
     public MesEmpresa(){
         
     }
-    
-    public MesEmpresa(String ano, String mes, Meses meses) {
+
+    public MesEmpresa(String ano, String mes, Empresa empresa, int totalNotas, double totalValor, double totalCredito) {
         this.ano = ano;
         this.mes = mes;
-        this.meses = meses;
+        this.empresa = empresa;
+        this.totalNotas = totalNotas;
+        this.totalValor = totalValor;
+        this.totalCredito = totalCredito;
     }
-
+    
+    
+   
     public String getAno() {
         return ano;
     }
@@ -48,13 +57,43 @@ public class MesEmpresa {
         this.mes = mes;
     }
 
-    public Meses getMeses() {
-        return meses;
+
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setMeses(Meses meses) {
-        this.meses = meses;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
+
+    public int getTotalNotas() {
+        return totalNotas;
+    }
+
+    public void setTotalNotas(int totalNotas) {
+        this.totalNotas = totalNotas;
+    }
+
+    public double getTotalValor() {
+        return totalValor;
+    }
+
+    public void setTotalValor(double totalValor) {
+        this.totalValor = totalValor;
+    }
+
+    public double getTotalCredito() {
+        return totalCredito;
+    }
+
+    public void setTotalCredito(double totalCredito) {
+        this.totalCredito = totalCredito;
+    }
+
+   public double getPercentual(){
+       return getTotalCredito()/getTotalValor();
+   }
+    
 
     @Override
     public int hashCode() {
