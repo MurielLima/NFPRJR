@@ -38,12 +38,21 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+//       
 //        cidade = new Cidade("Piraí do Sul", "PS");
 //        cidadeRepository.save(cidade);
 //        empresa = new Empresa("83276137000109", "Mercado Fanelli", "Mercade Fanelli",cidade);
 //        empresaRepository.save(empresa);
 //        meses = new Meses("05","2018", 28, 527.25, 7.89, empresa);
+//        mesesRepository.save(meses);
+//        mesEmpresa = new MesEmpresa("2018", "05", meses);
+//        mesEmpresaRepository.save(mesEmpresa);
+         
+//        cidade = new Cidade("Ponta Grossa", "PG");
+//        cidadeRepository.save(cidade);
+//        empresa = new Empresa("83276687000109", "SuperMercado Condor", "SuperMercado Condor",cidade);
+//        empresaRepository.save(empresa);
+//        meses = new Meses("05","2018", 58, 1277.25, 28.38, empresa);
 //        mesesRepository.save(meses);
 //        mesEmpresa = new MesEmpresa("2018", "05", meses);
 //        mesEmpresaRepository.save(mesEmpresa);
