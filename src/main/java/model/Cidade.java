@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Muriel
  */
 @Document
-class Cidade {
+public class Cidade {
     @Id
     private String idCidade;
     @Indexed(unique=true)
@@ -24,6 +24,12 @@ class Cidade {
 
     public Cidade() {
     }
+
+    public Cidade(String nome, String sigla) {
+        this.nome = nome;
+        this.sigla = sigla;
+    }
+    
 
     public String getNome() {
         return nome;

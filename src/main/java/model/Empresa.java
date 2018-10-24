@@ -28,6 +28,15 @@ public class Empresa {
     public Empresa() {
     }
 
+    public Empresa(String cnpj, String nomeFantasia, String razaoSocial, Cidade cidade) {
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+        this.cidade = cidade;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
