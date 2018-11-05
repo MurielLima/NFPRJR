@@ -6,6 +6,8 @@
 package model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Mateus
  */
 @Document
+@CompoundIndexes({
+    @CompoundIndex(
+            name = "anoMes_idx",
+            def = "{'ano': 1,'mes': 1}", unique = true)
+
+})
 public class Meses {
     @Id
     private String idMes;

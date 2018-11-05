@@ -72,5 +72,11 @@
             <artifactId>fontawesomefx</artifactId>
             <version>8.6</version>
         </dependency>
+        <dependency>
+            <groupId>br.uepg.deinfo.linguagem</groupId>
+            <artifactId>libLP</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 </project>

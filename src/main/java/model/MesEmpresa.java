@@ -6,6 +6,8 @@
 package model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author Mateus
  */
 @Document
+@CompoundIndexes({
+    @CompoundIndex(
+            name = "anoMesEmpresa_idx",
+            def = "{'ano': 1,'mes': 1, 'empresa': 1}", unique = true)
+
+})
 public class MesEmpresa {
     @Id
     private String idMesEmpresa;
@@ -37,6 +45,10 @@ public class MesEmpresa {
         this.totalNotas = totalNotas;
         this.totalValor = totalValor;
         this.totalCredito = totalCredito;
+    }
+
+    public MesEmpresa(String string, String string0, Meses meses, Empresa empresa) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

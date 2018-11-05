@@ -17,7 +17,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Cidade {
     @Id
     private String idCidade;
-    @Indexed(unique=true)
     private String nome;
     @Indexed(unique=true)
     private String sigla;

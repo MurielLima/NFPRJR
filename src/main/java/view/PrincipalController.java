@@ -21,15 +21,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private Label label;
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println(cidadeRepository.findAll());
-        System.out.println(empresaRepository.findAll());
-        System.out.println(mesesRepository.findAll());
-        System.out.println(mesEmpresaRepository.findAll());
-   
-        label.setText("Hello World!");
-    }
+
     
     Empresa empresa;
     Cidade cidade;
