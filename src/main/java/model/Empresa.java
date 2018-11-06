@@ -5,6 +5,7 @@
  */
 package model;
 
+import static config.DAO.cidadeRepository;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -82,7 +83,7 @@ public class Empresa {
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
     }
-
+  
     public String getRazaoSocial() {
         return razaoSocial;
     }
@@ -91,8 +92,8 @@ public class Empresa {
         this.razaoSocial = razaoSocial;
     }
 
-    public Cidade getCidade() {
-        return cidade;
+    public String getCidade() {
+        return cidade.getNome();
     }
 
     public void setCidade(Cidade cidade) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package repository;
+import java.util.List;
 import model.Empresa;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -11,5 +12,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 
 public interface EmpresaRepository extends MongoRepository<Empresa, String>{
-     
+     public List<Empresa> findByNomeFantasiaLikeIgnoreCaseOrCnpjLikeIgnoreCaseOrRazaoSocialLikeIgnoreCase(String nomeFantasia,String Cnpj,String razaoSocial);
 }
