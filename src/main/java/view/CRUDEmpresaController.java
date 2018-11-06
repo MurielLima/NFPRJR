@@ -30,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import model.Cidade;
 import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
+import utility.CnpjTextField;
 import utility.XPopOver;
 
 /**
@@ -48,7 +49,7 @@ public class CRUDEmpresaController implements Initializable {
     private final char separadorDecimal
             = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
     @FXML
-    private TextField txtFldCnpj;
+    private CnpjTextField txtFldCnpj;
     @FXML
     private TextField txtFldNomeFantasia;
     @FXML
@@ -105,7 +106,7 @@ public class CRUDEmpresaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnConfirma.disableProperty().bind(txtFldCnpj.textProperty().isEmpty().
+        btnConfirma.disableProperty().bind((txtFldCnpj.cnpjValidoBinding(txtFldCnpj)).
                 or(txtFldNomeFantasia.textProperty().isEmpty()));
     }
 

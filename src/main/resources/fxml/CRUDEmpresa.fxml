@@ -9,6 +9,7 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import de.jensd.fx.glyphs.materialdesignicons.*?>
+<?import utility.*?>
 
 <!--<?import br.uepg.deinfo.linguagem.*?>-->
 
@@ -21,7 +22,7 @@
                         <VBox spacing="5.0">
                             <children>
                                 <Label text="CNPJ" />
-                                <TextField fx:id="txtFldCnpj" prefHeight="25.0" prefWidth="200.0" />
+                                <CnpjTextField fx:id="txtFldCnpj" prefHeight="25.0" prefWidth="200.0" />
                             </children>
                             <HBox.margin>
                                 <Insets left="5.0" />
