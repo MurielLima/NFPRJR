@@ -106,7 +106,7 @@ public class CRUDEmpresaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        btnConfirma.disableProperty().bind((txtFldCnpj.cnpjValidoBinding(txtFldCnpj)).
+        btnConfirma.disableProperty().bind((txtFldCnpj.cnpjValidoBinding(txtFldCnpj)).not().
                 or(txtFldNomeFantasia.textProperty().isEmpty()));
     }
 
