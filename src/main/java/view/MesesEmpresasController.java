@@ -5,23 +5,29 @@
  */
 package view;
 
+import static config.DAO.mesEmpresaRepository;
+import static config.DAO.mesesRepository;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
 
-/**
- * FXML Controller class
- *
- * @author Muriel
- */
+
 public class MesesEmpresasController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+@FXML
+private ComboBox cmbMeses;
+
+@FXML
+private TableView tblVlwMesEmpresa;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       cmbMeses.setItems(FXCollections.observableList(mesesRepository.findAll()));
+       tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
     }    
     
 }

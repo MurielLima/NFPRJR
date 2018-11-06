@@ -108,6 +108,14 @@ public class MesEmpresa {
    public double getPercentual(){
        return getTotalCredito()/getTotalValor();
    }
+   
+   public double getMedia(){
+       return getTotalValor()/getTotalNotas();
+   }
+   
+   public String getCidade(){
+       return empresa.getCidade().getSigla();
+   }
     
 
     @Override

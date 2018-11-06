@@ -1,11 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MesesEmpresasController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.MesesEmpresasController">
+   <children>
+      <VBox layoutX="52.0" layoutY="-71.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="600.0">
+               <children>
+                  <ComboBox fx:id="cmbMeses" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="tblVlwMesEmpresa" prefHeight="366.0" prefWidth="600.0">
+              <columns>
+                <TableColumn prefWidth="144.0" text="empresa">
+                <cellValueFactory>
+                 <PropertyValueFactory property="empresa" />
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="50.0" text="cidade" >
+                <cellValueFactory>
+                 <PropertyValueFactory property="cidade" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="49.0" text="notas" >
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalNotas" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="109.0" text="total val nf" >
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalValor" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="89.0" text="total credito" >
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalCredito" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="61.0" text="\% nf" >
+                      <cellValueFactory>
+                 <PropertyValueFactory property="percentual" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="93.0" text="med/nota" >
+                      <cellValueFactory>
+                 <PropertyValueFactory property="media" />
+                </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
 </AnchorPane>

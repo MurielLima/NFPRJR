@@ -87,7 +87,7 @@ public class Meses {
 
     @Override
     public String toString() {
-        return mes;
+        return mes +  "/" + ano;
     }
     
 
