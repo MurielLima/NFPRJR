@@ -12,8 +12,8 @@
 
 <!--<?import br.uepg.deinfo.linguagem.*?>-->
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="160.0" prefWidth="613.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="view.CRUDEmpresaController">
-     <children>
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="160.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CRUDEmpresaController">
+    <children>
         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox>
@@ -39,23 +39,29 @@
                         <VBox spacing="5.0" />
                     </children>
                 </HBox>
-            <HBox spacing="5.0">
-               <children>
-                      <VBox spacing="5.0">
-                          <children>
-                              <Label text="Razao Social" />
-                              <TextField fx:id="txtFldRazaoSocial" prefHeight="25.0" prefWidth="330.0" />
-                          </children>
-                      </VBox>
+                <HBox spacing="5.0">
+                    <children>
+                        <VBox spacing="5.0">
+                            <children>
+                                <Label text="Razao Social" />
+                                <TextField fx:id="txtFldRazaoSocial" prefHeight="25.0" prefWidth="330.0" />
+                            </children>
+                        </VBox>
 
-               </children>
-            </HBox>
+                    </children>
+                </HBox>
                 <HBox alignment="BOTTOM_CENTER" spacing="5.0">
                     <children>
 
                         <VBox>
                             <children>
-                                <Label text="Cidade" />
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Cidade" />
+                                        <MaterialDesignIconView fx:id="btnIncluir" glyphName="PLUS" onMouseClicked="#acIncluir" size="1.3em" />
+                                        <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
+                                    </children>
+                                </HBox>
                                 <ComboBox fx:id="cmbCidade" prefWidth="200.0" />
                             </children>
                         </VBox>

@@ -92,8 +92,8 @@ public class Empresa {
         this.razaoSocial = razaoSocial;
     }
 
-    public String getCidade() {
-        return cidade.getNome();
+    public Cidade getCidade() {
+        return cidade;
     }
 
     public void setCidade(Cidade cidade) {

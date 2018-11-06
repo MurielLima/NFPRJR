@@ -10,6 +10,7 @@ import static config.Config.EXCLUIR;
 import static config.Config.INCLUIR;
 import static config.DAO.cidadeRepository;
 import static config.DAO.empresaRepository;
+import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.net.URL;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -27,7 +28,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import model.Cidade;
+import org.controlsfx.control.PopOver;
 import org.springframework.data.domain.Sort;
+import utility.XPopOver;
 
 /**
  * FXML Controller class
@@ -36,9 +39,11 @@ import org.springframework.data.domain.Sort;
  */
 public class CRUDEmpresaController implements Initializable {
 
- /**
+    /**
      * Initializes the controller class.
      */
+    public char acao;
+    public Cidade cidade;
     private EmpresasController controllerPai;
     private final char separadorDecimal
             = new DecimalFormatSymbols(Locale.getDefault(Locale.Category.FORMAT)).getDecimalSeparator();
@@ -48,16 +53,16 @@ public class CRUDEmpresaController implements Initializable {
     private TextField txtFldNomeFantasia;
     @FXML
     private TextField txtFldRazaoSocial;
-
     @FXML
     private AnchorPane anchorPane;
     @FXML
     private Button btnConfirma;
     @FXML
-    private ComboBox cmbCidade;
- 
-
-    
+    public ComboBox cmbCidade;
+    @FXML
+    private MaterialDesignIconView btnAlterar;
+    @FXML
+    private MaterialDesignIconView btnIncluir;
 
     @FXML
     private void btnCancelaClick() {
@@ -69,10 +74,9 @@ public class CRUDEmpresaController implements Initializable {
     private void btnConfirmaClick() {
         controllerPai.empresa.setCnpj(txtFldCnpj.getText());
         controllerPai.empresa.setNomeFantasia(txtFldNomeFantasia.getText());
-        controllerPai.empresa.setRazaoSocial(txtFldRazaoSocial.getText());        
+        controllerPai.empresa.setRazaoSocial(txtFldRazaoSocial.getText());
         controllerPai.empresa.setCidade((Cidade) cmbCidade.getSelectionModel().getSelectedItem());
-        
-        
+
         try {
             switch (controllerPai.acao) {
                 case ALTERAR:
@@ -110,7 +114,7 @@ public class CRUDEmpresaController implements Initializable {
         txtFldCnpj.setText(controllerPai.empresa.getCnpj());
         txtFldNomeFantasia.setText(controllerPai.empresa.getNomeFantasia());
         txtFldRazaoSocial.setText(controllerPai.empresa.getRazaoSocial());
-        
+
         cmbCidade.setItems(FXCollections.observableList(
                 cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
         cmbCidade.getSelectionModel().select(controllerPai.empresa.getCidade());
@@ -129,4 +133,38 @@ public class CRUDEmpresaController implements Initializable {
             }
         }
     };
+
+    /**
+     * CRUD CIDADE
+     */
+    @FXML
+    private void acIncluir() {
+        acao = INCLUIR;
+        cidade = new Cidade();
+        showCRUD();
+    }
+
+    @FXML
+    private void acAlterar() {
+        acao = ALTERAR;
+        cidade = (Cidade) cmbCidade.getSelectionModel().getSelectedItem();
+        showCRUD();
+    }
+
+    private void showCRUD() {
+        String cena = "/fxml/CRUDCidade.fxml";
+        XPopOver popOver = null;
+
+        switch (acao) {
+            case INCLUIR:
+                popOver = new XPopOver(cena, "Criação de Cidade", btnIncluir,PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+            case ALTERAR:
+                popOver = new XPopOver(cena, "Alteração de Cidade", btnAlterar,PopOver.ArrowLocation.TOP_RIGHT);
+                break;
+        }
+        CRUDCidadeController controllerFilho = popOver.getLoader().getController();
+        controllerFilho.setCadastroController(this);
+    }
+
 }
