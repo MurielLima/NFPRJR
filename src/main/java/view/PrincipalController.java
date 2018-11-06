@@ -37,7 +37,7 @@ public class PrincipalController implements Initializable {
 //        empresaRepository.save(empresa);
 //        meses = new Meses("05","2018", 28, 527.25, 7.89);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresa = new MesEmpresa("2018", "05",empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
 //         
 //        cidade = new Cidade("Ponta Grossa", "PG");
@@ -46,7 +46,7 @@ public class PrincipalController implements Initializable {
 //        empresaRepository.save(empresa);
 //        meses = new Meses("05","2018", 58, 1277.25, 28.38);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresa = new MesEmpresa("2018", "05",empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
 //         cidade = new Cidade("Castro", "CST");
 //        cidadeRepository.save(cidade);
@@ -54,7 +54,7 @@ public class PrincipalController implements Initializable {
 //        empresaRepository.save(empresa);
 //        meses = new Meses("06","2018", 22, 685.25, 9.89);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresa = new MesEmpresa("2018", "05",empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
 //         
 //        cidade = new Cidade("Carambeí", "CRB");
@@ -63,7 +63,7 @@ public class PrincipalController implements Initializable {
 //        empresaRepository.save(empresa);
 //        meses = new Meses("05","2018", 78, 1357.25, 32.38);
 //        mesesRepository.save(meses);
-//        mesEmpresa = new MesEmpresa("2018", "05", meses,empresa);
+//        mesEmpresa = new MesEmpresa("2018", "05",empresa);
 //        mesEmpresaRepository.save(mesEmpresa);
     }    
 }

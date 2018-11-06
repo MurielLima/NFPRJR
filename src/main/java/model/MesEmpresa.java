@@ -46,10 +46,13 @@ public class MesEmpresa {
         this.totalValor = totalValor;
         this.totalCredito = totalCredito;
     }
-
-    public MesEmpresa(String string, String string0, Meses meses, Empresa empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public MesEmpresa(String ano, String mes, Empresa empresa) {
+        this.ano = ano;
+        this.mes = mes;
+        this.empresa = empresa;
     }
+
+
     
     
    
