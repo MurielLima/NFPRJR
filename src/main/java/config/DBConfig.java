@@ -22,19 +22,19 @@ public class DBConfig extends AbstractMongoConfiguration {
     
     @Override
     protected String getDatabaseName() {
-        return "NFPRJR";
+        return "nfprjr";
     }
 
     @Override
     public Mongo mongo() throws Exception {
        
-//            List<MongoCredential> credentials = new ArrayList<MongoCredential>();
-//            credentials.add(
-//                    MongoCredential.createCredential("muriel2", "NFPRJR", "muriel2".toCharArray())
-//            );
-//            MongoClient client = new MongoClient(new ServerAddress("ds125953.mlab.com", 25953), credentials);
+            List<MongoCredential> credentials = new ArrayList<MongoCredential>();
+            credentials.add(
+                    MongoCredential.createCredential("muriel2", "nfprjr", "muriel2".toCharArray())
+            );
+            MongoClient client = new MongoClient(new ServerAddress("ds155243.mlab.com", 55243), credentials);
 
-            MongoClient client = new MongoClient("localhost",27017);
+//            MongoClient client = new MongoClient("localhost",27017);
 
             return client;
         
