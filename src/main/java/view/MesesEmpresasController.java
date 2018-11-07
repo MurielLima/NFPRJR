@@ -27,6 +27,11 @@ private ComboBox cmbMeses;
 @FXML
 private TableView tblVlwMesEmpresa;
 
+@FXML
+private void acLimpar(){
+     tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
+     cmbMeses.getSelectionModel().clearSelection();
+}
 
 
     @Override
@@ -38,6 +43,7 @@ private TableView tblVlwMesEmpresa;
        cmbMeses.valueProperty().addListener(
                 new ChangeListener<Meses>() {
             public void changed(ObservableValue<? extends Meses> observable, Meses oldValue, Meses newValue) {
+                if(newValue!=null)
                 tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(newValue.getMes())));
             }
 
