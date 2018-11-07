@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MesesEmpresasController">
+   <children>
+      <VBox layoutX="52.0" layoutY="-71.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="cmbMeses" prefWidth="150.0" />
+                  <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+               </children>
+               <padding>
+                  <Insets left="10.0" top="5.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="tblVlwMesEmpresa" prefHeight="298.0" prefWidth="600.0">
+              <columns>
+                <TableColumn prefWidth="144.0" text="%lbl.empresa.txt">
+                <cellValueFactory>
+                 <PropertyValueFactory property="empresa" />
+                </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="50.0" text="%lbl.cidade.txt">
+                <cellValueFactory>
+                 <PropertyValueFactory property="cidade" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="49.0" text="%lbl.notas.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalNotas" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="109.0" text="%lbl.totalValnf.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalValor" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="89.0" text="%lbl.totalCredito.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="totalCredito" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="61.0" text="%lbl.nf.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="percentual" />
+                </cellValueFactory>
+                </TableColumn>
+                  <TableColumn prefWidth="93.0" text="%lbl.med/nota.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="media" />
+                </cellValueFactory>
+                </TableColumn>
+              </columns>
+            </TableView>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalNotas.txt" />
+                        <Label fx:id="lblTotalNotas" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalValNotas.txt" />
+                        <Label fx:id="lblTotalValNotas" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalCredito.txt" />
+                        <Label fx:id="lblTotalCredito" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

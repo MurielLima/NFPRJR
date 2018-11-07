@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.materialdesignicons.*?>
+
+<!--<?import br.uepg.deinfo.linguagem.*?>-->
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="454.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EmpresasController">
+    <children>
+        <VBox prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox spacing="5.0">
+                    <children>
+                        <MaterialDesignIconView fx:id="btnAlterar" glyphName="PENCIL" onMouseClicked="#acAlterar" size="1.3em" />
+               
+                        <TextField fx:id="txtFldPesquisar">
+                            <HBox.margin>
+                                <Insets left="30.0" />
+                            </HBox.margin>
+                        </TextField>
+                        <MaterialDesignIconView fx:id="btnPesquisar" glyphName="MAGNIFY" onMouseClicked="#acPesquisar" size="1.3em" />
+                        <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+                        <!--<Button fx:id="btnMostraEmpresas" mnemonicParsing="false" onAction="#btnMostraEmpresasClick" text="Mostrar Alunos" />-->
+                    </children>
+                
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>    
+                </HBox>
+                <TableView fx:id="tblView" prefHeight="421.0" prefWidth="758.0">
+                    <columns>
+                        <TableColumn prefWidth="139.0" text="CNPJ">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cnpj" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="350.0" prefWidth="286.0" text="%lbl.nomeFantasia.txt">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nomeFantasia" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="163.0" text="%lbl.razaoSocial.txt">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="razaoSocial" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn prefWidth="167.0" text="%lbl.cidade.txt">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="cidade" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="%btn.alterar.txt">
+                                    <graphic>
+                                        <MaterialDesignIconView glyphName="PENCIL" size="1.1em" />
+                                    </graphic>
+                                </MenuItem>
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
