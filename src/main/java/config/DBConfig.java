@@ -34,7 +34,6 @@ public class DBConfig extends AbstractMongoConfiguration {
             );
             MongoClient client = new MongoClient(new ServerAddress("ds155243.mlab.com", 55243), credentials);
 
-           // MongoClient client = new MongoClient("localhost",27017);
 
             return client;
         

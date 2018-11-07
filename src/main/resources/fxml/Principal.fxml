@@ -12,12 +12,12 @@
          <children>
             <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Meses/Empresas">
+                <Tab text="%lbl.meses/empresas.txt">
                   <content>
                      <fx:include source="MesesEmpresas.fxml" />
                   </content>
                 </Tab>
-                <Tab text="Empresas">
+                <Tab text="%lbl.empresas.txt">
                   <content>
                      <fx:include source="Empresas.fxml" />
                   </content>

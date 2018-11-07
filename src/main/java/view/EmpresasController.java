@@ -62,7 +62,7 @@ public class EmpresasController implements Initializable {
     @FXML
     private void acPesquisar() {
         tblView.setItems(FXCollections.observableList(
-                empresaRepository.findByNomeFantasiaLikeIgnoreCaseOrCnpjLikeIgnoreCaseOrRazaoSocialLikeIgnoreCase(txtFldPesquisar.getText(),txtFldPesquisar.getText(),txtFldPesquisar.getText())));
+                empresaRepository.findByNomeFantasiaLikeIgnoreCaseOrCnpjOrRazaoSocialLikeIgnoreCase(txtFldPesquisar.getText(),txtFldPesquisar.getText(),txtFldPesquisar.getText())));
     }
 
 

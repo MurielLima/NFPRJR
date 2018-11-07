@@ -24,37 +24,37 @@
             </HBox>
             <TableView fx:id="tblVlwMesEmpresa" prefHeight="298.0" prefWidth="600.0">
               <columns>
-                <TableColumn prefWidth="144.0" text="empresa">
+                <TableColumn prefWidth="144.0" text="%lbl.empresa.txt">
                 <cellValueFactory>
                  <PropertyValueFactory property="empresa" />
                 </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="50.0" text="cidade">
+                <TableColumn prefWidth="50.0" text="%lbl.cidade.txt">
                 <cellValueFactory>
                  <PropertyValueFactory property="cidade" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="49.0" text="notas">
+                  <TableColumn prefWidth="49.0" text="%lbl.notas.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalNotas" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="109.0" text="total val nf">
+                  <TableColumn prefWidth="109.0" text="%lbl.totalValnf.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalValor" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="89.0" text="total credito">
+                  <TableColumn prefWidth="89.0" text="%lbl.totalCredito.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalCredito" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="61.0" text="\% nf">
+                  <TableColumn prefWidth="61.0" text="%lbl.nf.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="percentual" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="93.0" text="med/nota">
+                  <TableColumn prefWidth="93.0" text="%lbl.med/nota.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="media" />
                 </cellValueFactory>
@@ -65,19 +65,19 @@
                <children>
                   <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
                      <children>
-                        <Label text="TotalNotas:" />
+                        <Label text="%lbl.totalNotas.txt" />
                         <Label fx:id="lblTotalNotas" />
                      </children>
                   </HBox>
                   <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
                      <children>
-                        <Label text="TotalValNotas:" />
+                        <Label text="%lbl.totalValNotas.txt" />
                         <Label fx:id="lblTotalValNotas" />
                      </children>
                   </HBox>
                   <HBox prefHeight="85.0" prefWidth="163.0" spacing="5.0">
                      <children>
-                        <Label text="TotalCredito" />
+                        <Label text="%lbl.totalCredito.txt" />
                         <Label fx:id="lblTotalCredito" />
                      </children>
                   </HBox>

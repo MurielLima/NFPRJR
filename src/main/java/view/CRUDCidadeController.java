@@ -66,29 +66,38 @@ public class CRUDCidadeController implements Initializable {
     private void btnConfirmaClick() {
         controllerPai.cidade.setNome(txtFldNome.getText().toUpperCase());
         controllerPai.cidade.setSigla(txtFldSigla.getText().toUpperCase());
-        try {
-            switch (controllerPai.acao) {
-                case INCLUIR:
-                    cidadeRepository.insert(controllerPai.cidade);
-                    break;
-                case ALTERAR:
-                    cidadeRepository.save(controllerPai.cidade);
-                    break;
-            }
-            controllerPai.cmbCidade.setItems(FXCollections.observableList(
-                    cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
-            controllerPai.cmbCidade.getSelectionModel().clearSelection();
-            controllerPai.cmbCidade.getSelectionModel().select(controllerPai.cidade);
+        if ((cidadeRepository.findByNomeLikeIgnoreCaseOrSiglaLikeIgnoreCase(controllerPai.cidade.getNome(),controllerPai.cidade.getSigla())).equals(controllerPai.cidade)) {
 
-            anchorPane.getScene().getWindow().hide();
-
-        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Cadastro de Cidade");
-            alert.setContentText(e.getMessage());
+            alert.setContentText("Já existe uma cidade com esse nome.");
             alert.showAndWait();
-        }
+        } else {
+            try {
 
+                switch (controllerPai.acao) {
+                    case INCLUIR:
+                        cidadeRepository.insert(controllerPai.cidade);
+                        break;
+                    case ALTERAR:
+                        cidadeRepository.save(controllerPai.cidade);
+                        break;
+                }
+                controllerPai.cmbCidade.setItems(FXCollections.observableList(
+                        cidadeRepository.findAll(new Sort(new Sort.Order("nome")))));
+                controllerPai.cmbCidade.getSelectionModel().clearSelection();
+                controllerPai.cmbCidade.getSelectionModel().select(controllerPai.cidade);
+
+                anchorPane.getScene().getWindow().hide();
+
+            } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setHeaderText("Cadastro de Cidade");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
+        }
     }
 }
