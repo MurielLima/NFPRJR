@@ -44,8 +44,12 @@ public class Meses {
         this.totalValor = totalValor;
         this.totalCredito = totalCredito;
     }
+    
+    public String getMes(){
+        return mes;
+    }
 
-    public String getMes() {
+    public String getMesExtenso() {
                 switch (mes){
             case ("01") : return "Janeiro";        
             case ("02")  : return "Fevereiro";
@@ -75,7 +79,7 @@ public class Meses {
         this.ano = ano;
     }
 
-    public double getTotalNotas() {
+    public Integer getTotalNotas() {
         return totalNotas;
     }
 
@@ -101,7 +105,7 @@ public class Meses {
 
     @Override
     public String toString() {
-        return getMes() +  "/" + ano;
+        return getMesExtenso()+  "/" + ano;
     }
     
 

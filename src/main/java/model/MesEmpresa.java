@@ -63,8 +63,12 @@ public class MesEmpresa {
     public void setAno(String ano) {
         this.ano = ano;
     }
+    
+     public String getMes(){
+        return mes;
+    }
 
-    public String getMes() {
+    public String getMesExtenso() {
         switch (mes){
             case ("01") : return "Janeiro";        
             case ("02")  : return "Fevereiro";

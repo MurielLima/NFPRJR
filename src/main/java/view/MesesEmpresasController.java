@@ -15,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import model.Meses;
 
@@ -26,6 +27,15 @@ private ComboBox cmbMeses;
 
 @FXML
 private TableView tblVlwMesEmpresa;
+
+@FXML
+private Label lblTotalNotas;
+
+@FXML
+private Label lblTotalValNotas;
+
+@FXML
+private Label lblTotalCredito;
 
 @FXML
 private void acLimpar(){
@@ -43,9 +53,13 @@ private void acLimpar(){
        cmbMeses.valueProperty().addListener(
                 new ChangeListener<Meses>() {
             public void changed(ObservableValue<? extends Meses> observable, Meses oldValue, Meses newValue) {
-                if(newValue!=null)
+                if(newValue!=null){
                 tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(newValue.getMes())));
-            }
+                lblTotalCredito.setText(Double.toString(newValue.getTotalCredito()));
+                lblTotalNotas.setText(Integer.toString(newValue.getTotalNotas()));
+                lblTotalValNotas.setText(Double.toString(newValue.getTotalValor()));
+                
+            }}
 
            
         });
