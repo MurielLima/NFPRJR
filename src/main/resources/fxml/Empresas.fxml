@@ -41,17 +41,17 @@
                                 <PropertyValueFactory property="cnpj" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="350.0" prefWidth="286.0" text="Nome Fantasia">
+                        <TableColumn maxWidth="350.0" prefWidth="286.0" text="%lbl.nomeFantasia.txt">
                             <cellValueFactory>
                                 <PropertyValueFactory property="nomeFantasia" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="163.0" text="Razão Social">
+                        <TableColumn prefWidth="163.0" text="%lbl.razaoSocial.txt">
                             <cellValueFactory>
                                 <PropertyValueFactory property="razaoSocial" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="167.0" text="Cidade">
+                        <TableColumn prefWidth="167.0" text="%lbl.cidade.txt">
                             <cellValueFactory>
                                 <PropertyValueFactory property="cidade" />
                             </cellValueFactory>
@@ -60,7 +60,7 @@
                     <contextMenu>
                         <ContextMenu>
                             <items>
-                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="Alterar">
+                                <MenuItem fx:id="mnAlterar" mnemonicParsing="false" onAction="#acAlterar" text="%btn.alterar.txt">
                                     <graphic>
                                         <MaterialDesignIconView glyphName="PENCIL" size="1.1em" />
                                     </graphic>

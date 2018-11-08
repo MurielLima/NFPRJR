@@ -5,6 +5,7 @@
  */
 package model;
 
+import static config.Config.i18n;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
@@ -23,6 +24,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 })
 public class Meses {
+
     @Id
     private String idMes;
     private String mes;
@@ -30,13 +32,23 @@ public class Meses {
     private int totalNotas;
     private double totalValor;
     private double totalCredito;
- 
 
-     public Meses(){
-         
-     }
-    
-    
+    public Meses() {
+
+    }
+
+    public void addTotalNotas(int notas) {
+        this.totalNotas = totalNotas + notas;
+    }
+
+    public void addTotalValor(double valor) {
+        this.totalValor = totalValor + valor;
+    }
+
+    public void addTotalCredito(double credito) {
+        this.totalCredito = totalCredito + credito;
+    }
+
     public Meses(String mes, String ano, int totalNotas, double totalValor, double totalCredito) {
         this.mes = mes;
         this.ano = ano;
@@ -46,6 +58,37 @@ public class Meses {
     }
 
     public String getMes() {
+        return mes;
+    }
+
+    public String getMesExtenso() {
+        switch (mes) {
+            case ("01"):
+                return i18n.getString("lbl.jan.txt");
+            case ("02"):
+                return i18n.getString("lbl.fev.txt");
+            case ("03"):
+                return i18n.getString("lbl.mar.txt");
+            case ("04"):
+                return i18n.getString("lbl.abr.txt");
+            case ("05"):
+                return i18n.getString("lbl.mai.txt");
+            case ("06"):
+                return i18n.getString("lbl.jun.txt");
+            case ("07"):
+                return i18n.getString("lbl.jul.txt");
+            case ("08"):
+                return i18n.getString("lbl.ago.txt");
+            case ("09"):
+                return i18n.getString("lbl.set.txt");
+            case ("10"):
+                return i18n.getString("lbl.out.txt");
+            case ("11"):
+                return i18n.getString("lbl.nov.txt");
+            case ("12"):
+                return i18n.getString("lbl.dez.txt");
+
+        }
         return mes;
     }
 
@@ -61,7 +104,7 @@ public class Meses {
         this.ano = ano;
     }
 
-    public double getTotalNotas() {
+    public Integer getTotalNotas() {
         return totalNotas;
     }
 
@@ -87,9 +130,8 @@ public class Meses {
 
     @Override
     public String toString() {
-        return mes;
+        return getMesExtenso() + "/" + ano;
     }
-    
 
     @Override
     public int hashCode() {
@@ -115,7 +157,5 @@ public class Meses {
         }
         return true;
     }
-    
-    
-    
+
 }

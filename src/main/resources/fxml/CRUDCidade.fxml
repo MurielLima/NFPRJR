@@ -18,7 +18,7 @@
                     <children>
                         <VBox spacing="5.0">
                             <children>
-                                <Label text="Cidade" />
+                                <Label text="%lbl.cidade.txt" />
                                 <TextField fx:id="txtFldNome" prefWidth="200.0" />
                             </children>
                             <HBox.margin>
@@ -27,7 +27,7 @@
                         </VBox>
                         <VBox>
                             <children>
-                                <Label text="Sigla">
+                                <Label text="%lbl.sigla.txt">
                                     <padding>
                                         <Insets bottom="5.0" />
                                     </padding>
@@ -42,12 +42,12 @@
                 </HBox>
                 <HBox spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="Cancela">
+                        <Button mnemonicParsing="false" onAction="#btnCancelaClick" prefWidth="100.0" text="%btn.cancela.txt">
                             <graphic>
                                 <MaterialDesignIconView glyphName="CLOSE" />
                             </graphic>
                         </Button>
-                        <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="Confirma">
+                        <Button fx:id="btnConfirma" mnemonicParsing="false" onAction="#btnConfirmaClick" prefWidth="100.0" text="%btn.confirma.txt">
                             <graphic>
                                 <MaterialDesignIconView glyphName="CHECK" />
                             </graphic>
