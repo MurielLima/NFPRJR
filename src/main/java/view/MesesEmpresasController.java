@@ -8,6 +8,10 @@ package view;
 import static config.DAO.mesEmpresaRepository;
 import static config.DAO.mesesRepository;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import model.MesEmpresa;
 import model.Meses;
 
 
@@ -47,7 +52,10 @@ private void acLimpar(){
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       cmbMeses.setItems(FXCollections.observableList(mesesRepository.findAll()));
+        List<MesEmpresa>  lista = new ArrayList<>();
+        Collections.reverse(lista);
+       cmbMeses.setItems(FXCollections.observableList(lista));
+      
        tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
        
        cmbMeses.valueProperty().addListener(
