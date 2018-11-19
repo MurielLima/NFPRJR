@@ -17,6 +17,7 @@
                <children>
                   <ComboBox fx:id="cmbMeses" prefWidth="150.0" />
                   <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
+                  <Button mnemonicParsing="false" text="Importar" onMouseClicked="#btnAbrirClick" />
                </children>
                <padding>
                   <Insets left="10.0" top="5.0" />

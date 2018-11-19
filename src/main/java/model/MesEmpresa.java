@@ -51,6 +51,26 @@ public class MesEmpresa {
         this.mes = mes;
         this.empresa = empresa;
     }
+    
+     public MesEmpresa(String linha) {
+        String[] partes = linha.split("\\;");   // Dividir a string em partes. 
+        
+        this.empresa.setCnpj(partes[0]);
+        
+        this.empresa.setRazaoSocial(partes[1]);
+        
+        this.totalNotas = Byte.parseByte(partes[2]);
+        
+        this.mes = partes[3];
+        
+        this.totalValor =  Byte.parseByte(partes[4]);
+        
+        this.totalCredito = Byte.parseByte(partes[5]);
+        
+        
+        
+    }
+    
     public String getAno() {
         return ano;
     }
