@@ -26,6 +26,8 @@ import model.Meses;
 
 
 public class MesesEmpresasController implements Initializable {
+    
+    private Meses mesAux;
 
 @FXML
 private ComboBox cmbMeses;
@@ -52,11 +54,17 @@ private void acLimpar(){
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        List<MesEmpresa>  lista = new ArrayList<>();
+        List<Meses>  lista = new ArrayList<>();
+        lista=mesesRepository.findAll();
         Collections.reverse(lista);
        cmbMeses.setItems(FXCollections.observableList(lista));
-      
-       tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
+       cmbMeses.getSelectionModel().selectFirst();
+      mesAux =  (Meses) cmbMeses.getSelectionModel().getSelectedItem();
+     
+       tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(mesAux.getMes())));
+        lblTotalCredito.setText(Double.toString(mesAux.getTotalCredito()));
+                lblTotalNotas.setText(Integer.toString(mesAux.getTotalNotas()));
+              lblTotalValNotas.setText(Double.toString(mesAux.getTotalValor()));
        
        cmbMeses.valueProperty().addListener(
                 new ChangeListener<Meses>() {
