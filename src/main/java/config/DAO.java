@@ -3,6 +3,7 @@ package config;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.CidadeRepository;
 import repository.EmpresaRepository;
+import repository.InstituicaoRepository;
 import repository.MesEmpresaRepository;
 import repository.MesesRepository;
 
@@ -15,6 +16,7 @@ public class DAO {
     public static EmpresaRepository empresaRepository = ctx.getBean(EmpresaRepository.class);
     public static MesEmpresaRepository mesEmpresaRepository = ctx.getBean(MesEmpresaRepository.class);
     public static MesesRepository mesesRepository = ctx.getBean(MesesRepository.class);
+    public static InstituicaoRepository instituicaoRepository = ctx.getBean(InstituicaoRepository.class);
 
 
 }

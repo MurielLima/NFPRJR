@@ -29,6 +29,12 @@ public class Empresa {
     public Empresa() {
     }
 
+    public Empresa(String cnpj, String nomeFantasia, String razaoSocial) {
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+    }
+
     public Empresa(String cnpj, String nomeFantasia, String razaoSocial, Cidade cidade) {
         this.cnpj = cnpj;
         this.nomeFantasia = nomeFantasia;

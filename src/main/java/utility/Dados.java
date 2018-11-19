@@ -1,17 +1,11 @@
 package utility;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Empresa;
 import model.MesEmpresa;
-import org.json.JSONObject;
-import org.json.JSONArray;
 
 public class Dados {
     

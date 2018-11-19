@@ -12,6 +12,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface MesesRepository extends MongoRepository<Meses, String>{
      public Meses findByMes (String mes);
-
+     public int countByMesOrAno(String mes,String ano);
 
 }
