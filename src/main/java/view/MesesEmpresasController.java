@@ -30,7 +30,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Empresa;
@@ -60,6 +62,12 @@ public class MesesEmpresasController implements Initializable {
 
     @FXML
     private Label lblTotalCredito;
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private Label lblProgress;
+    @FXML
+    private ProgressBar progressBar;
     String[] mesAno;
     Meses m = new Meses();
     String linha1;
@@ -70,8 +78,6 @@ public class MesesEmpresasController implements Initializable {
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
         cmbMeses.getSelectionModel().clearSelection();
     }
-
-
 
     @FXML
     private void btnAbrirClick() {
@@ -90,7 +96,8 @@ public class MesesEmpresasController implements Initializable {
 
         int i = 0;
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
-
+double j=0.000000001;
+    double prog=0;
         final Task threadImportacao = new Task<Integer>() {
             @Override
             protected Integer call() throws InterruptedException {
