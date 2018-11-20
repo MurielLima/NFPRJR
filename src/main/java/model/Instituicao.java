@@ -25,6 +25,12 @@ public class Instituicao {
     public Instituicao() {
     }
 
+    public Instituicao(String cnpj, String nomeFantasia, String razaoSocial) {
+        this.cnpj = cnpj;
+        this.nomeFantasia = nomeFantasia;
+        this.razaoSocial = razaoSocial;
+    }
+
     public String getCnpj() {
         return cnpj;
     }

@@ -17,7 +17,7 @@
                <children>
                   <ComboBox fx:id="cmbMeses" prefWidth="150.0" />
                   <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
-                  <Button mnemonicParsing="false" text="Importar" onMouseClicked="#btnAbrirClick" />
+                  <Button mnemonicParsing="false" onMouseClicked="#btnAbrirClick" text="Importar" />
                </children>
                <padding>
                   <Insets left="10.0" top="5.0" />
@@ -86,5 +86,15 @@
             </HBox>
          </children>
       </VBox>
+      <StackPane fx:id="stackPane" layoutY="362.0" prefHeight="49.0" prefWidth="600.0">
+         <children>
+            <ToolBar prefHeight="40.0" prefWidth="200.0">
+               <items>
+                  <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+                  <Label fx:id="lblProgress" />
+               </items>
+            </ToolBar>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

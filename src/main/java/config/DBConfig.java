@@ -20,23 +20,35 @@ import repository.EmpresaRepository;
 
 public class DBConfig extends AbstractMongoConfiguration {
     
-    @Override
+//    @Override
+//    protected String getDatabaseName() {
+//        return "nfprjr";
+//    }
+//
+//    @Override
+//    public Mongo mongo() throws Exception {
+//       
+//            List<MongoCredential> credentials = new ArrayList<MongoCredential>();
+//            credentials.add(
+//                    MongoCredential.createCredential("muriel2", "nfprjr", "muriel2".toCharArray())
+//            );
+//            MongoClient client = new MongoClient(new ServerAddress("ds155243.mlab.com", 55243), credentials);
+//
+//
+//            return client;
+//        
+//
+//    }
+        @Override
     protected String getDatabaseName() {
         return "nfprjr";
     }
 
     @Override
     public Mongo mongo() throws Exception {
+        MongoClient client = new MongoClient("localhost");
        
-            List<MongoCredential> credentials = new ArrayList<MongoCredential>();
-            credentials.add(
-                    MongoCredential.createCredential("muriel2", "nfprjr", "muriel2".toCharArray())
-            );
-            MongoClient client = new MongoClient(new ServerAddress("ds155243.mlab.com", 55243), credentials);
-
-
-            return client;
-        
-
+        return client;
     }
+    
 }
