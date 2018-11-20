@@ -69,12 +69,7 @@ public class MesesEmpresasController implements Initializable {
     public Label lblProgress;
     @FXML
     public ProgressBar progressBar;
-    String[] mesAno;
-    Meses m = new Meses();
-    String linha1;
-    BufferedReader br = null;
-        public double j = 0.000000001;
-        public double prog = 0;
+
     @FXML
     private void acLimpar() {
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
@@ -96,19 +91,16 @@ public class MesesEmpresasController implements Initializable {
         fileChooser.getExtensionFilters()
                 .add(extFilter);
 
-        int i = 0;
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
-        
-         
-                    dados.ler(MesesEmpresasController.this);
-                
+
+        dados.importar(MesesEmpresasController.this);
 
     }
 
-    private void inicializaComboMeses() {
+    public void inicializaComboMeses() {
         List<Meses> lista = new ArrayList<>();
         lista = mesesRepository.findAll();
-        if (lista.size() != 0) {
+        if (!lista.isEmpty()) {
             Collections.reverse(lista);
 
             cmbMeses.setItems(FXCollections.observableList(lista));
@@ -129,6 +121,7 @@ public class MesesEmpresasController implements Initializable {
         inicializaComboMeses();
         cmbMeses.valueProperty().addListener(
                 new ChangeListener<Meses>() {
+            @Override
             public void changed(ObservableValue<? extends Meses> observable, Meses oldValue, Meses newValue) {
                 if (newValue != null) {
                     tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(newValue.getMes())));

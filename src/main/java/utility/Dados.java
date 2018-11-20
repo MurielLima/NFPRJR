@@ -34,6 +34,8 @@ public class Dados {
     String[] partes;
     private List<Nota> lstNota;
     private Meses m;
+    public double j = 0.000000001;
+    public double prog = 0;
 
     public Dados(String nomeArq) {
         m = new Meses(0, 0, 0);
@@ -51,9 +53,9 @@ public class Dados {
 
     }
 
-    public void ler(MesesEmpresasController mes) {
+    public void importar(MesesEmpresasController mes) {
         controllerPai = mes;
-        
+
         Task threadImportacao = new Task<Integer>() {
             @Override
             protected Integer call() throws InterruptedException {
@@ -61,12 +63,11 @@ public class Dados {
                     try {
                         long linhas;
                         br = new BufferedReader(new FileReader(nomeArq));
-                        linhas=br.lines().count();
+                        linhas = br.lines().count();
                         br.close();
                         br = new BufferedReader(new FileReader(nomeArq));
                         if ((linha = br.readLine()) != null) {
                             primeiraLinha();
-                            System.out.println("PRIMEIRA LINHA OK");
                         }
                         if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {
                             if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0) {
@@ -79,21 +80,27 @@ public class Dados {
                                         System.out.println("IF NO != NULL");
                                         lstNota.add(no);
                                         cadastraNota(no);
-
                                     }
-
-                                    updateProgress(controllerPai.prog++, linhas);
+                                    updateProgress(prog++, linhas);
                                     updateMessage(nf.format(controllerPai.progressBar.getProgress() * 100) + "%");
                                 }
                                 mesesRepository.insert(m);
-//                    cadastraNotas();
+
                             } else {
                                 System.out.println("Mes já cadastrado");
-                                //Alert Mes já cadastrado
+                                Alert alert = new Alert(Alert.AlertType.ERROR);
+                                alert.setTitle("Erro");
+                                alert.setHeaderText("Cadastro de Mês");
+                                alert.setContentText("Mês Já cadastrado");
+                                alert.showAndWait();
                             }
                         } else {
                             System.out.println("Instituição não confere");
-                            //Alert Instituição errada
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Erro");
+                            alert.setHeaderText("Arquivo de Instituição");
+                            alert.setContentText("Nota não tem o mesmo CNPJ da Instituição");
+                            alert.showAndWait();
                         }
                     } catch (IOException ex) {
                         Logger.getLogger(MesesEmpresasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -123,12 +130,7 @@ public class Dados {
             public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue
             ) {
                 if (newValue == Worker.State.SUCCEEDED) {
-//                            inicializaComboMeses();
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Sucesso");
-                    alert.setHeaderText("Finalizado titulo");
-                    alert.setContentText("concluido");
-                    alert.showAndWait();
+                    controllerPai.inicializaComboMeses();
                 }
             }
 
