@@ -5,6 +5,7 @@
  */
 package view;
 
+import static config.Config.nf;
 import static config.DAO.empresaRepository;
 import static config.DAO.instituicaoRepository;
 import static config.DAO.mesEmpresaRepository;
@@ -63,16 +64,17 @@ public class MesesEmpresasController implements Initializable {
     @FXML
     private Label lblTotalCredito;
     @FXML
-    private StackPane stackPane;
+    public StackPane stackPane;
     @FXML
-    private Label lblProgress;
+    public Label lblProgress;
     @FXML
-    private ProgressBar progressBar;
+    public ProgressBar progressBar;
     String[] mesAno;
     Meses m = new Meses();
     String linha1;
     BufferedReader br = null;
-
+        public double j = 0.000000001;
+        public double prog = 0;
     @FXML
     private void acLimpar() {
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
@@ -96,42 +98,10 @@ public class MesesEmpresasController implements Initializable {
 
         int i = 0;
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
-double j=0.000000001;
-    double prog=0;
-        final Task threadImportacao = new Task<Integer>() {
-            @Override
-            protected Integer call() throws InterruptedException {
-                try {
-
-                    dados.ler();
-                } catch (Exception e) {
-                }
-                return 0;
-            }
-        };
-        Thread t = new Thread(threadImportacao);
-
-        t.setDaemon(
-                true);
-        t.start();
-
-        threadImportacao.stateProperty()
-                .addListener(new ChangeListener<Worker.State>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue
-                    ) {
-                        if (newValue == Worker.State.SUCCEEDED) {
-                            inicializaComboMeses();
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Sucesso");
-                            alert.setHeaderText("Finalizado titulo");
-                            alert.setContentText("concluido");
-                            alert.showAndWait();
-                        }
-                    }
-
-                }
-                );
+        
+         
+                    dados.ler(MesesEmpresasController.this);
+                
 
     }
 

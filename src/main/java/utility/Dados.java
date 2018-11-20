@@ -1,5 +1,6 @@
 package utility;
 
+import static config.Config.nf;
 import static config.DAO.empresaRepository;
 import static config.DAO.instituicaoRepository;
 import static config.DAO.mesEmpresaRepository;
@@ -11,6 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+import javafx.concurrent.Task;
+import javafx.concurrent.Worker;
+import javafx.scene.control.Alert;
 import model.Empresa;
 import model.MesEmpresa;
 import model.Meses;
@@ -19,6 +26,7 @@ import view.MesesEmpresasController;
 
 public class Dados {
 
+    MesesEmpresasController controllerPai;
     private BufferedReader br = null;
     private String nomeArq;
     private String linha;
@@ -28,7 +36,7 @@ public class Dados {
     private Meses m;
 
     public Dados(String nomeArq) {
-        m = new Meses(0,0,0);
+        m = new Meses(0, 0, 0);
         lstNota = new ArrayList<>();
         this.nomeArq = nomeArq;
     }
@@ -43,47 +51,89 @@ public class Dados {
 
     }
 
-    public void ler() {
+    public void ler(MesesEmpresasController mes) {
+        controllerPai = mes;
+        
+        Task threadImportacao = new Task<Integer>() {
+            @Override
+            protected Integer call() throws InterruptedException {
+                try {
+                    try {
+                        long linhas;
+                        br = new BufferedReader(new FileReader(nomeArq));
+                        linhas=br.lines().count();
+                        br.close();
+                        br = new BufferedReader(new FileReader(nomeArq));
+                        if ((linha = br.readLine()) != null) {
+                            primeiraLinha();
+                            System.out.println("PRIMEIRA LINHA OK");
+                        }
+                        if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {
+                            if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0) {
+                                m.setMes(mesAno[0]);
+                                m.setAno(mesAno[1]);
+                                while ((linha = br.readLine()) != null) {
+                                    System.out.println("WHILE OK");
+                                    Nota no = particionaLinhas(linha);
+                                    if (no != null) {
+                                        System.out.println("IF NO != NULL");
+                                        lstNota.add(no);
+                                        cadastraNota(no);
 
-        try {
-            br = new BufferedReader(new FileReader(nomeArq));
-            if ((linha = br.readLine()) != null) {
-                primeiraLinha();
-                System.out.println("PRIMEIRA LINHA OK");
-            }
-            if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {
-                if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0) {
-                    m.setMes(mesAno[0]);
-                    m.setAno(mesAno[1]);
-                    while ((linha = br.readLine()) != null) {
-                        System.out.println("WHILE OK");
-                        Nota no = particionaLinhas(linha);
-                        if (no != null) {
-                            System.out.println("IF NO != NULL");
-                            lstNota.add(no);
-                            cadastraNota(no);
+                                    }
+
+                                    updateProgress(controllerPai.prog++, linhas);
+                                    updateMessage(nf.format(controllerPai.progressBar.getProgress() * 100) + "%");
+                                }
+                                mesesRepository.insert(m);
+//                    cadastraNotas();
+                            } else {
+                                System.out.println("Mes já cadastrado");
+                                //Alert Mes já cadastrado
+                            }
+                        } else {
+                            System.out.println("Instituição não confere");
+                            //Alert Instituição errada
+                        }
+                    } catch (IOException ex) {
+                        Logger.getLogger(MesesEmpresasController.class.getName()).log(Level.SEVERE, null, ex);
+                    } finally {
+                        try {
+                            if (br != null) {
+                                br.close();
+                            }
+                        } catch (IOException ex) {
                         }
                     }
-                    mesesRepository.insert(m);
-//                    cadastraNotas();
-                } else {
-                    System.out.println("Mes já cadastrado");
-                    //Alert Mes já cadastrado
+                } catch (Exception e) {
                 }
-            } else {
-                System.out.println("Instituição não confere");
-                //Alert Instituição errada
+                return 0;
             }
-        } catch (IOException ex) {
-            Logger.getLogger(MesesEmpresasController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
+        };
+        Thread t = new Thread(threadImportacao);
+
+        t.setDaemon(
+                true);
+        t.start();
+        controllerPai.stackPane.visibleProperty().bind(threadImportacao.runningProperty());
+        controllerPai.lblProgress.textProperty().bind(threadImportacao.messageProperty());
+        controllerPai.progressBar.progressProperty().bind(threadImportacao.progressProperty());
+        threadImportacao.stateProperty().addListener(new ChangeListener<Worker.State>() {
+            @Override
+            public void changed(ObservableValue<? extends Worker.State> observable, Worker.State oldValue, Worker.State newValue
+            ) {
+                if (newValue == Worker.State.SUCCEEDED) {
+//                            inicializaComboMeses();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Sucesso");
+                    alert.setHeaderText("Finalizado titulo");
+                    alert.setContentText("concluido");
+                    alert.showAndWait();
                 }
-            } catch (IOException ex) {
             }
+
         }
+        );
 
     }
 
@@ -121,41 +171,39 @@ public class Dados {
     private void cadastraNota(Nota me) {
         int i = 0;
         try {
-            
-                MesEmpresa mesEmpresa = new MesEmpresa(0,0,0);
-                if ((mesEmpresaRepository.findByAnoAndMesAndEmpresa(me.getAno(), me.getMes(), empresaRepository.findByCnpj(me.getCnpj()))) != null) {
-                    mesEmpresa = (mesEmpresaRepository.findByAnoAndMesAndEmpresa(me.getAno(), me.getMes(), empresaRepository.findByCnpj(me.getCnpj())));
-                    mesEmpresa.setTotalCredito(me.getCredito() + mesEmpresa.getTotalCredito());
-                    mesEmpresa.setTotalValor(me.getValor() + mesEmpresa.getTotalValor());
-                    mesEmpresa.setTotalNotas(mesEmpresa.getTotalNotas() + 1);
-                    System.out.println("save");
-                    mesEmpresaRepository.save(mesEmpresa);
-                } else {
-                    mesEmpresa.setAno(me.getAno());
-                    mesEmpresa.setMes(me.getMes());
-                    mesEmpresa.setTotalCredito(me.getCredito());
-                    mesEmpresa.setTotalValor(me.getValor());
-                    mesEmpresa.setTotalNotas(1);
-                    // Setar a Empresa para a classe MesEmpresa
-                    if ((empresaRepository.countByCnpj(me.getCnpj())) == 0) {
-                        Empresa empTemp = new Empresa(me.getCnpj(), me.getRazaoSocial(), me.getRazaoSocial());
-                        
-                        empresaRepository.insert(empTemp);
 
-                    }
-                    System.out.println("insert");
-                    mesEmpresa.setEmpresa(empresaRepository.findByCnpj(me.getCnpj()));
-                    mesEmpresaRepository.insert(mesEmpresa);
+            MesEmpresa mesEmpresa = new MesEmpresa(0, 0, 0);
+            if ((mesEmpresaRepository.findByAnoAndMesAndEmpresa(me.getAno(), me.getMes(), empresaRepository.findByCnpj(me.getCnpj()))) != null) {
+                mesEmpresa = (mesEmpresaRepository.findByAnoAndMesAndEmpresa(me.getAno(), me.getMes(), empresaRepository.findByCnpj(me.getCnpj())));
+                mesEmpresa.setTotalCredito(me.getCredito() + mesEmpresa.getTotalCredito());
+                mesEmpresa.setTotalValor(me.getValor() + mesEmpresa.getTotalValor());
+                mesEmpresa.setTotalNotas(mesEmpresa.getTotalNotas() + 1);
+                System.out.println("save");
+                mesEmpresaRepository.save(mesEmpresa);
+            } else {
+                mesEmpresa.setAno(me.getAno());
+                mesEmpresa.setMes(me.getMes());
+                mesEmpresa.setTotalCredito(me.getCredito());
+                mesEmpresa.setTotalValor(me.getValor());
+                mesEmpresa.setTotalNotas(1);
+                // Setar a Empresa para a classe MesEmpresa
+                if ((empresaRepository.countByCnpj(me.getCnpj())) == 0) {
+                    Empresa empTemp = new Empresa(me.getCnpj(), me.getRazaoSocial(), me.getRazaoSocial());
+
+                    empresaRepository.insert(empTemp);
+
                 }
+                System.out.println("insert");
+                mesEmpresa.setEmpresa(empresaRepository.findByCnpj(me.getCnpj()));
+                mesEmpresaRepository.insert(mesEmpresa);
+            }
 
-                m.addTotalNotas(1);
-                m.addTotalValor(me.getValor());
-                m.addTotalCredito(me.getCredito());
-                System.out.println(m.getTotalNotas());
-                System.out.println("CADASTRA NOTA OK");
+            m.addTotalNotas(1);
+            m.addTotalValor(me.getValor());
+            m.addTotalCredito(me.getCredito());
+            System.out.println(m.getTotalNotas());
+            System.out.println("CADASTRA NOTA OK");
 
-            
-            
         } catch (Exception e) {
             System.out.println("Erro no cadastro de notas" + e.getMessage());
         }
@@ -190,7 +238,7 @@ public class Dados {
                     mesEmpresaRepository.insert(mesEmpresa);
                 }
 
-                m.addTotalNotas(m.getTotalNotas()+1);
+                m.addTotalNotas(m.getTotalNotas() + 1);
                 m.addTotalValor(me.getValor());
                 m.addTotalCredito(me.getCredito());
                 System.out.println(i++ + " - " + me);
