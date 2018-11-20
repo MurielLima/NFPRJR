@@ -49,6 +49,12 @@ public class Meses {
         this.totalCredito = totalCredito + credito;
     }
 
+    public Meses(int totalNotas, double totalValor, double totalCredito) {
+        this.totalNotas = totalNotas;
+        this.totalValor = totalValor;
+        this.totalCredito = totalCredito;
+    }
+
     public Meses(String mes, String ano, int totalNotas, double totalValor, double totalCredito) {
         this.mes = mes;
         this.ano = ano;

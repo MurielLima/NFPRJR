@@ -51,6 +51,12 @@ public class MesEmpresa {
         this.mes = mes;
         this.empresa = empresa;
     }
+
+    public MesEmpresa(int totalNotas, double totalValor, double totalCredito) {
+        this.totalNotas = totalNotas;
+        this.totalValor = totalValor;
+        this.totalCredito = totalCredito;
+    }
     
      public MesEmpresa(String linha) {
         String[] partes = linha.split("\\;");   // Dividir a string em partes. 
@@ -147,7 +153,7 @@ public class MesEmpresa {
    }
    
    public String getCidade(){
-       return empresa.getCidade().getSigla();
+       return "cidade";//empresa.getCidade().getSigla();
    }
     
 

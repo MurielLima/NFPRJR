@@ -2,6 +2,7 @@ package view;
 
 import static config.DAO.cidadeRepository;
 import static config.DAO.empresaRepository;
+import static config.DAO.instituicaoRepository;
 import static config.DAO.mesEmpresaRepository;
 import static config.DAO.mesesRepository;
 import java.net.URL;
@@ -12,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import model.Cidade;
 import model.Empresa;
+import model.Instituicao;
 import model.MesEmpresa;
 import model.Meses;
 import repository.CidadeRepository;
@@ -30,7 +32,8 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+       Instituicao inst=new Instituicao("22660046000170","Minha Empresa","Empresa");
+       instituicaoRepository.insert(inst);
 //        cidade = new Cidade("Piraí do Sul", "PS");
 //        cidadeRepository.save(cidade);
 //        empresa = new Empresa("05452058000190", "Mercado Fanelli", "Mercade Fanelli",cidade);
