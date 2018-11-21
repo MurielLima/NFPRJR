@@ -71,9 +71,6 @@ public class Dados {
                         }
                         if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {//Juntar findByCnpjMesAno
                             if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0 ) {
-                                System.out.println("Mes ugal");
-                                System.out.println(mesAno[0]);
-                                System.out.println(mesAno[1]);
                                 m.setMes(mesAno[0]);
                                 m.setAno(mesAno[1]);
                                 while ((linha = br.readLine()) != null) {
@@ -85,15 +82,12 @@ public class Dados {
                                         cadastraNota(no);
                                     }
                                     updateProgress(prog++, linhas);
-                                    updateMessage(nf.format(controllerPai.progressBar.getProgress() * 100) + "%");
+                                    updateMessage(String.format("%.2f",(controllerPai.progressBar.getProgress() * 100)) + "%");
                                 }
                                 mesesRepository.insert(m);
 
                             } else {
                                 System.out.println("Mes já cadastrado");
-                                System.out.println("Mes ugal");
-                                System.out.println(mesAno[0]);
-                                System.out.println(mesAno[1]);
                                 System.out.println(mesesRepository.countByMesAndAno(mesAno[0], mesAno[1]));
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Erro");

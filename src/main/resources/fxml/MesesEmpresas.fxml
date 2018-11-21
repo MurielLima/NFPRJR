@@ -37,12 +37,12 @@
                  <PropertyValueFactory property="cidade" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="49.0" text="%lbl.notas.txt" style="-fx-alignment: CENTER-RIGHT;">
+                  <TableColumn prefWidth="49.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.notas.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalNotas" />
                 </cellValueFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="109.0" text="%lbl.totalValnf.txt" style="-fx-alignment: CENTER-RIGHT;">
+                  <TableColumn prefWidth="109.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.totalValnf.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalValor" />
                 </cellValueFactory>
@@ -50,7 +50,7 @@
                         <Formatted decimals="2" type="NFC" />
                         </cellFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="89.0" text="%lbl.totalCredito.txt" style="-fx-alignment: CENTER-RIGHT;">
+                  <TableColumn prefWidth="89.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.totalCredito.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="totalCredito" />
                 </cellValueFactory>
@@ -58,7 +58,7 @@
                         <Formatted decimals="2" type="NFC" />
                         </cellFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="61.0" text="%lbl.nf.txt" style="-fx-alignment: CENTER-RIGHT;">
+                  <TableColumn prefWidth="61.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.nf.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="percentual" />
                 </cellValueFactory>
@@ -66,7 +66,7 @@
                         <Formatted decimals="3" type="PERCENT" />
                         </cellFactory>
                 </TableColumn>
-                  <TableColumn prefWidth="93.0" text="%lbl.med/nota.txt" style="-fx-alignment: CENTER-RIGHT;">
+                  <TableColumn prefWidth="93.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.med/nota.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="media" />
                 </cellValueFactory>
@@ -76,9 +76,9 @@
                 </TableColumn>
               </columns>
             </TableView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="48.0" prefWidth="600.0">
                <children>
-                  <HBox prefHeight="22.0" prefWidth="163.0" spacing="5.0">
+                  <HBox prefHeight="31.0" prefWidth="163.0" spacing="5.0">
                      <children>
                         <Label text="%lbl.totalNotas.txt" />
                         <Label fx:id="lblTotalNotas" />
@@ -112,17 +112,17 @@
                   </TableView>-->
                </children>
             </HBox>
-         </children>
-      </VBox>
-      <StackPane fx:id="stackPane" layoutY="362.0" prefHeight="49.0" prefWidth="600.0" visible="false">
-         <children>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="28.0" prefWidth="600.0">
                <items>
-                  <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
-                  <Label fx:id="lblProgress" />
+                  <StackPane fx:id="stackPane" prefHeight="18.0" prefWidth="580.0" visible="false">
+                     <children>
+                        <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+                        <Label fx:id="lblProgress" />
+                     </children>
+                  </StackPane>
                </items>
             </ToolBar>
          </children>
-      </StackPane>
+      </VBox>
    </children>
 </AnchorPane>
