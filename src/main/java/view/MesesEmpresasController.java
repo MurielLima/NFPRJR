@@ -100,6 +100,7 @@ public class MesesEmpresasController implements Initializable {
         }
     }
 
+    @FXML
     private void showInformacoes() {
         MesEmpresa mesEmpresa = (MesEmpresa) tblVlwMesEmpresa.getSelectionModel().getSelectedItem();
         empresaTemp = mesEmpresa.getEmpresa();
@@ -137,9 +138,7 @@ public class MesesEmpresasController implements Initializable {
         mesEmpresaRepository.deleteByAnoAndMes(mesAux.getAno(), mesAux.getMes());
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(mesAux.getMes())));
         cmbMeses.setItems(FXCollections.observableList(mesesRepository.findAll()));
-        lblTotalCredito.setText("");
-        lblTotalNotas.setText("");
-        lblTotalValNotas.setText("");
+        inicializaComboMeses();
 
     }
 
@@ -177,9 +176,13 @@ public class MesesEmpresasController implements Initializable {
             tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(mesAux.getMes())));
             // System.out.println(mesAux.getTotalCredito());
             //     teste.setItems(FXCollections.observableList(mesesRepository.findByMes(mesAux.getMes())));
-            lblTotalCredito.setText("R$" + String.format("%.2f", mesAux.getTotalCredito()));
+            lblTotalCredito.setText("R$ " + String.format("%.2f", mesAux.getTotalCredito()));
             lblTotalNotas.setText(String.valueOf(mesAux.getTotalNotas()));
-            lblTotalValNotas.setText("R$"+String.format("%.2f", mesAux.getTotalValor()));
+            lblTotalValNotas.setText("R$ " + String.format("%.2f", mesAux.getTotalValor()));
+        } else {
+            lblTotalCredito.setText("");
+            lblTotalNotas.setText("");
+            lblTotalValNotas.setText("");
         }
     }
 
@@ -194,9 +197,9 @@ public class MesesEmpresasController implements Initializable {
                 if (newValue != null) {
                     tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(newValue.getMes())));
 //                    teste.setItems(FXCollections.observableList(mesesRepository.findByMes(newValue.getMes())));
-                    lblTotalCredito.setText(String.format("%.2f", newValue.getTotalCredito()));
+                    lblTotalCredito.setText("R$ " +String.format("%.2f", newValue.getTotalCredito()));
                     lblTotalNotas.setText(Integer.toString(newValue.getTotalNotas()));
-                    lblTotalValNotas.setText(String.format("%.2f", newValue.getTotalValor()));
+                    lblTotalValNotas.setText("R$ " +String.format("%.2f", newValue.getTotalValor()));
 
                 }
             }

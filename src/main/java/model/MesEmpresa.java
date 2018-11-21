@@ -5,6 +5,8 @@
  */
 package model;
 
+import config.Config;
+import java.time.LocalDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
@@ -90,6 +92,7 @@ public class MesEmpresa {
     }
 
     public String getMesExtenso() {
+        
         switch (mes){
             case ("01") : return "Janeiro";        
             case ("02")  : return "Fevereiro";

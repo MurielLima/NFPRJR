@@ -28,14 +28,14 @@
             </HBox>
             <TableView fx:id="tblVlwMesEmpresa" prefHeight="298.0" prefWidth="600.0">
               <columns>
-                <TableColumn prefWidth="144.0" text="%lbl.empresa.txt">
+                <TableColumn prefWidth="44.0" text="%lbl.ano.txt">
                 <cellValueFactory>
-                 <PropertyValueFactory property="empresa" />
+                 <PropertyValueFactory property="ano" />
                 </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="50.0" text="%lbl.cidade.txt">
+                <TableColumn prefWidth="50.0" text="%lbl.mes.txt">
                 <cellValueFactory>
-                 <PropertyValueFactory property="cidade" />
+                 <PropertyValueFactory property="mesExtenso" />
                 </cellValueFactory>
                 </TableColumn>
                   <TableColumn prefWidth="49.0" text="%lbl.notas.txt" style="-fx-alignment: CENTER-RIGHT;">
@@ -77,7 +77,30 @@
                 </TableColumn>
               </columns>
             </TableView>
-            
+             <HBox prefHeight="48.0" prefWidth="600.0">
+               <children>
+                  <HBox prefHeight="31.0" prefWidth="163.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalNotas.txt" />
+                        <Label fx:id="lblTotalNotas" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="82.0" prefWidth="228.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalValNotas.txt" />
+                        <Label fx:id="lblTotalValNotas" />
+                      
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="82.0" prefWidth="209.0" spacing="5.0">
+                     <children>
+                        <Label text="%lbl.totalCredito.txt" />
+                        <Label fx:id="lblTotalCredito" />
+                      
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
       

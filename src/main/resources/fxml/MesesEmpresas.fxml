@@ -75,6 +75,17 @@
                         </cellFactory>
                 </TableColumn>
               </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                       <MenuItem fx:id="cntxMenuEmpresa" mnemonicParsing="false" onAction="#showInformacoes" text="Informações">
+                                    <graphic>
+                                        <MaterialDesignIconView glyphName="EYE" />
+                                    </graphic>
+                                </MenuItem>
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
             </TableView>
             <HBox prefHeight="48.0" prefWidth="600.0">
                <children>
@@ -98,7 +109,7 @@
                       
                      </children>
                   </HBox>
-                  <!--<TableView fx:id="teste" prefHeight="82.0" prefWidth="275.0">
+<!--                  <TableView fx:id="teste" prefHeight="82.0" prefWidth="275.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="tot" />
                       <TableColumn  prefWidth="75.0" text="C2" >

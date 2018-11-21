@@ -5,6 +5,7 @@
  */
 package model;
 
+import config.Config;
 import static config.Config.i18n;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
@@ -39,6 +40,7 @@ public class Meses {
 
     public void addTotalNotas(int notas) {
         this.totalNotas = totalNotas + notas;
+      
     }
 
     public void addTotalValor(double valor) {

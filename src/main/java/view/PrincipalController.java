@@ -1,11 +1,13 @@
 package view;
 
+import static config.Config.df;
 import static config.DAO.cidadeRepository;
 import static config.DAO.empresaRepository;
 import static config.DAO.instituicaoRepository;
 import static config.DAO.mesEmpresaRepository;
 import static config.DAO.mesesRepository;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,6 +34,10 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       // df.toFormat().
+                
+                
+      //  System.out.println("Meeeees" +LocalDate.of(01, 01, 2001).format(dt));
 //       Instituicao inst=new Instituicao("22660046000170","Minha Empresa","Empresa");
 //       instituicaoRepository.insert(inst);
 //        cidade = new Cidade("Piraí do Sul", "PS");

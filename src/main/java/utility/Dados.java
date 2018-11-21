@@ -1,5 +1,6 @@
 package utility;
 
+import static config.Config.i18n;
 import static config.Config.nf;
 import static config.DAO.empresaRepository;
 import static config.DAO.instituicaoRepository;
@@ -88,19 +89,19 @@ public class Dados {
 
                             } else {
                                 System.out.println("Mes já cadastrado");
-                                System.out.println(mesesRepository.countByMesAndAno(mesAno[0], mesAno[1]));
+//                                System.out.println(mesesRepository.countByMesAndAno(mesAno[0], mesAno[1]));
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Erro");
-                                alert.setHeaderText("Cadastro de Mês");
-                                alert.setContentText("Mês Já cadastrado");
+                                alert.setTitle(i18n.getString("lbl.erro.txt"));
+                                alert.setHeaderText(i18n.getString("lbl.cadMes.txt"));
+                                alert.setContentText(i18n.getString("lbl.mesExists.txt"));
                                 alert.showAndWait();
                             }
                         } else {
                             System.out.println("Instituição não confere");
                             Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Erro");
-                            alert.setHeaderText("Arquivo de Instituição");
-                            alert.setContentText("Nota não tem o mesmo CNPJ da Instituição");
+                            alert.setTitle(i18n.getString("lbl.erro.txt"));
+                            alert.setHeaderText(i18n.getString("lbl.arqInst.txt"));
+                            alert.setContentText(i18n.getString("lbl.notCNPJ.txt"));
                             alert.showAndWait();
                         }
                     } catch (IOException ex) {
