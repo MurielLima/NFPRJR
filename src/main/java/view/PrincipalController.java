@@ -32,8 +32,8 @@ public class PrincipalController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       Instituicao inst=new Instituicao("22660046000170","Minha Empresa","Empresa");
-       instituicaoRepository.insert(inst);
+//       Instituicao inst=new Instituicao("22660046000170","Minha Empresa","Empresa");
+//       instituicaoRepository.insert(inst);
 //        cidade = new Cidade("Piraí do Sul", "PS");
 //        cidadeRepository.save(cidade);
 //        empresa = new Empresa("05452058000190", "Mercado Fanelli", "Mercade Fanelli",cidade);

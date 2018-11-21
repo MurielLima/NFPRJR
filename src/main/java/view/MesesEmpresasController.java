@@ -5,6 +5,7 @@
  */
 package view;
 
+import static config.Config.i18n;
 import static config.Config.nf;
 import static config.DAO.empresaRepository;
 import static config.DAO.instituicaoRepository;
@@ -15,36 +16,51 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import static javafx.scene.input.MouseEvent.MOUSE_CLICKED;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.Empresa;
 import model.Instituicao;
 import model.MesEmpresa;
 import model.Meses;
 import model.Nota;
 import utility.Dados;
+import utility.XPopOver;
 
 public class MesesEmpresasController implements Initializable {
-
+    
+    
+     
+  
+    public  Empresa empresaTemp;
     private Meses mesAux;
 
     private List<MesEmpresa> lstPrinc = new ArrayList<MesEmpresa>();
@@ -54,6 +70,9 @@ public class MesesEmpresasController implements Initializable {
 
     @FXML
     private TableView tblVlwMesEmpresa;
+    
+    @FXML
+    private TableView teste;
 
     @FXML
     private Label lblTotalNotas;
@@ -69,11 +88,65 @@ public class MesesEmpresasController implements Initializable {
     public Label lblProgress;
     @FXML
     public ProgressBar progressBar;
+    @FXML
+    public Button btnAbrir;
+
+    
+    
+    @FXML
+    private void tblVlwEmpresaClick(Event event) {
+        MouseEvent me = null;
+        if (event.getEventType() == MOUSE_CLICKED) {
+            me = (MouseEvent) event;
+            if (me.getClickCount() == 2) {   //Conta os clicks do mouse, 2 no presente caso.
+                showInformacoes();
+
+            }
+        }
+    }
+    
+     private void showInformacoes() {
+        MesEmpresa mesEmpresa = (MesEmpresa)tblVlwMesEmpresa.getSelectionModel().getSelectedItem();
+        empresaTemp = mesEmpresa.getEmpresa();
+        if (mesEmpresa != null) {
+            String cena = "/fxml/InformacoesEmpresa.fxml";
+            XPopOver popOver = null;
+            popOver = new XPopOver(cena, "Empresa", null);
+
+            InformacoesEmpresa controllerFilho = popOver.getLoader().getController();
+            controllerFilho.setCadastroController(this);
+        }
+
+    }
+
 
     @FXML
     private void acLimpar() {
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
         cmbMeses.getSelectionModel().clearSelection();
+    }
+    
+    
+    @FXML
+    private void acExcluiMes() {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                    i18n.getString("lbl.confirmaExcluiMes.txt"),
+                    ButtonType.YES, ButtonType.NO);
+                alert.setTitle(i18n.getString("lbl.mes.txt"));
+                alert.showAndWait();
+                if (alert.getResult() == ButtonType.NO) {
+                    alert.close();
+                    return;
+                }
+        
+        mesAux = (Meses)cmbMeses.getSelectionModel().getSelectedItem();
+        mesesRepository.delete(mesAux);
+        mesEmpresaRepository.deleteByAnoAndMes(mesAux.getAno(), mesAux.getMes());
+        tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(mesAux.getMes())));
+         lblTotalCredito.setText("");
+                    lblTotalNotas.setText("");
+                    lblTotalValNotas.setText("");
+        
     }
 
     @FXML
@@ -92,8 +165,10 @@ public class MesesEmpresasController implements Initializable {
                 .add(extFilter);
 
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
-
+       // btnAbrir.disableProperty();
         dados.importar(MesesEmpresasController.this);
+        
+
 
     }
 
@@ -108,10 +183,11 @@ public class MesesEmpresasController implements Initializable {
             mesAux = (Meses) cmbMeses.getSelectionModel().getSelectedItem();
 
             tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(mesAux.getMes())));
-            System.out.println(mesAux.getTotalCredito());
-            lblTotalCredito.setText(String.valueOf(mesAux.getTotalCredito()));
+           // System.out.println(mesAux.getTotalCredito());
+       //     teste.setItems(FXCollections.observableList(mesesRepository.findByMes(mesAux.getMes())));
+            lblTotalCredito.setText(String.format("%.2f",mesAux.getTotalCredito()));
             lblTotalNotas.setText(String.valueOf(mesAux.getTotalNotas()));
-            lblTotalValNotas.setText(String.valueOf(mesAux.getTotalValor()));
+            lblTotalValNotas.setText(String.format("%.2f",mesAux.getTotalValor()));
         }
     }
 
@@ -125,9 +201,10 @@ public class MesesEmpresasController implements Initializable {
             public void changed(ObservableValue<? extends Meses> observable, Meses oldValue, Meses newValue) {
                 if (newValue != null) {
                     tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findByMes(newValue.getMes())));
-                    lblTotalCredito.setText(Double.toString(newValue.getTotalCredito()));
+//                    teste.setItems(FXCollections.observableList(mesesRepository.findByMes(newValue.getMes())));
+                    lblTotalCredito.setText(String.format("%.2f",newValue.getTotalCredito()));
                     lblTotalNotas.setText(Integer.toString(newValue.getTotalNotas()));
-                    lblTotalValNotas.setText(Double.toString(newValue.getTotalValor()));
+                    lblTotalValNotas.setText(String.format("%.2f",newValue.getTotalValor()));
 
                 }
             }

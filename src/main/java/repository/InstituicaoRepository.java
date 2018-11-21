@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface InstituicaoRepository extends MongoRepository<Instituicao, String>{
     
-
+    
     public Empresa findByCnpj(String cnpj);
     public int countByCnpj(String cnpj);
 }

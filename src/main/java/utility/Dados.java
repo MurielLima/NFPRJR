@@ -69,15 +69,18 @@ public class Dados {
                         if ((linha = br.readLine()) != null) {
                             primeiraLinha();
                         }
-                        if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {
-                            if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0) {
+                        if ((instituicaoRepository.countByCnpj(partes[6])) > 0) {//Juntar findByCnpjMesAno
+                            if ((mesesRepository.countByMesAndAno(mesAno[0], mesAno[1])) == 0 ) {
+                                System.out.println("Mes ugal");
+                                System.out.println(mesAno[0]);
+                                System.out.println(mesAno[1]);
                                 m.setMes(mesAno[0]);
                                 m.setAno(mesAno[1]);
                                 while ((linha = br.readLine()) != null) {
-                                    System.out.println("WHILE OK");
+                                  //  System.out.println("WHILE OK");
                                     Nota no = particionaLinhas(linha);
                                     if (no != null) {
-                                        System.out.println("IF NO != NULL");
+                                     //   System.out.println("IF NO != NULL");
                                         lstNota.add(no);
                                         cadastraNota(no);
                                     }
@@ -88,6 +91,10 @@ public class Dados {
 
                             } else {
                                 System.out.println("Mes já cadastrado");
+                                System.out.println("Mes ugal");
+                                System.out.println(mesAno[0]);
+                                System.out.println(mesAno[1]);
+                                System.out.println(mesesRepository.countByMesAndAno(mesAno[0], mesAno[1]));
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Erro");
                                 alert.setHeaderText("Cadastro de Mês");
@@ -144,7 +151,7 @@ public class Dados {
         String[] partes = linha1.split(";");
 
         if (partes[6].equals("CALCULADO")) {
-            System.out.println("Mais uma");
+          //  System.out.println("Mais uma");
             //Formatar CNPJ para apenas numeros
             partes[0] = partes[0].replaceAll("[\\\\.\\\\/\\\\-]", "");
             no.setCnpj(partes[0]);
@@ -180,7 +187,7 @@ public class Dados {
                 mesEmpresa.setTotalCredito(me.getCredito() + mesEmpresa.getTotalCredito());
                 mesEmpresa.setTotalValor(me.getValor() + mesEmpresa.getTotalValor());
                 mesEmpresa.setTotalNotas(mesEmpresa.getTotalNotas() + 1);
-                System.out.println("save");
+              //  System.out.println("save");
                 mesEmpresaRepository.save(mesEmpresa);
             } else {
                 mesEmpresa.setAno(me.getAno());
@@ -195,7 +202,7 @@ public class Dados {
                     empresaRepository.insert(empTemp);
 
                 }
-                System.out.println("insert");
+                //System.out.println("insert");
                 mesEmpresa.setEmpresa(empresaRepository.findByCnpj(me.getCnpj()));
                 mesEmpresaRepository.insert(mesEmpresa);
             }
@@ -203,8 +210,8 @@ public class Dados {
             m.addTotalNotas(1);
             m.addTotalValor(me.getValor());
             m.addTotalCredito(me.getCredito());
-            System.out.println(m.getTotalNotas());
-            System.out.println("CADASTRA NOTA OK");
+          //  System.out.println(m.getTotalNotas());
+         //   System.out.println("CADASTRA NOTA OK");
 
         } catch (Exception e) {
             System.out.println("Erro no cadastro de notas" + e.getMessage());

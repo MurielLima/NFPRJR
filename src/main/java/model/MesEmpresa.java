@@ -145,7 +145,7 @@ public class MesEmpresa {
     }
 
    public double getPercentual(){
-       return getTotalCredito()/getTotalValor();
+       return (getTotalCredito()/getTotalValor())*100;
    }
    
    public double getMedia(){
@@ -153,7 +153,10 @@ public class MesEmpresa {
    }
    
    public String getCidade(){
-       return "cidade";//empresa.getCidade().getSigla();
+       if(empresa.getCidade() == null)
+           return "";
+       else
+           return empresa.getCidade().toString();
    }
     
 

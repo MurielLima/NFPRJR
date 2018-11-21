@@ -5,13 +5,15 @@
  */
 package repository;
 
+import java.util.List;
 import model.Meses;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
 
 public interface MesesRepository extends MongoRepository<Meses, String>{
-     public Meses findByMes (String mes);
+    public List<Meses> findByMes (String mes);
+     public Meses findByMesAndAno (String mes, String ano);
      public int countByMesAndAno(String mes,String ano);
 
 }
