@@ -81,7 +81,10 @@ public class Dados {
                                      //   System.out.println("IF NO != NULL");
                                         lstNota.add(no);
                                         cadastraNota(no);
+                                    }else {
+                                        System.out.println("\n------------------\n");
                                     }
+                                    
                                     updateProgress(prog++, linhas);
                                     updateMessage(String.format("%.2f",(controllerPai.progressBar.getProgress() * 100)) + "%");
                                 }
@@ -168,7 +171,13 @@ public class Dados {
             partes[5] = partes[5].replaceAll("\\,", ".");
             no.setCredito(partes[5]);
             return no;
+        }else {
+            int i =0;
+            for(String st: partes)
+                
+            System.out.println(partes[i++]);
         }
+        
         return null;
     }
 

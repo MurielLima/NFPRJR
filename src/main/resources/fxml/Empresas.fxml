@@ -69,6 +69,7 @@
                         </ContextMenu>
                     </contextMenu>
                 </TableView>
+            <Label fx:id="lblRandom" text="Label" />
 
             </children>
         </VBox>

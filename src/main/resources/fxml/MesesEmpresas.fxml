@@ -20,6 +20,7 @@
                   <MaterialDesignIconView fx:id="btnLimpar" glyphName="BROOM" onMouseClicked="#acLimpar" size="1.3em" />
                   <MaterialDesignIconView fx:id="btnExcluiMes" glyphName="MINUS" onMouseClicked="#acExcluiMes" size="1.3em" />
                   <Button fx:id="btnAbrir" mnemonicParsing="false" onMouseClicked="#btnAbrirClick" text="Importar" />
+                  <Button  mnemonicParsing="false" onMouseClicked="#filtraFilial" text="Filtrar" />
                </children>
                <padding>
                   <Insets left="10.0" top="5.0" />
@@ -69,6 +70,14 @@
                   <TableColumn prefWidth="93.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.med/nota.txt">
                       <cellValueFactory>
                  <PropertyValueFactory property="media" />
+                </cellValueFactory>
+                 <cellFactory>
+                        <Formatted decimals="2" type="NFC" />
+                        </cellFactory>
+                </TableColumn>
+                <TableColumn prefWidth="93.0" style="-fx-alignment: CENTER-RIGHT;" text="%lbl.med/nota.txt">
+                      <cellValueFactory>
+                 <PropertyValueFactory property="ticketMed" />
                 </cellValueFactory>
                  <cellFactory>
                         <Formatted decimals="2" type="NFC" />

@@ -155,6 +155,10 @@ public class MesEmpresa {
        return getTotalValor()/getTotalNotas();
    }
    
+    public double getTicketMed(){
+       return getTotalValor()/getTotalNotas();
+   }
+   
    public String getCidade(){
        if(empresa.getCidade() == null)
            return "";

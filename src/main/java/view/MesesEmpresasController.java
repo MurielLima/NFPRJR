@@ -119,6 +119,9 @@ public class MesesEmpresasController implements Initializable {
     private void acLimpar() {
         tblVlwMesEmpresa.setItems(FXCollections.observableList(mesEmpresaRepository.findAll()));
         cmbMeses.getSelectionModel().clearSelection();
+         lblTotalCredito.setText("");
+            lblTotalNotas.setText("");
+            lblTotalValNotas.setText("");
     }
 
     @FXML
@@ -160,6 +163,33 @@ public class MesesEmpresasController implements Initializable {
         dados = new Dados(String.valueOf(fileChooser.showOpenDialog(stage)));
         // btnAbrir.disableProperty();
         dados.importar(MesesEmpresasController.this);
+
+    }
+    
+    public void filtraFilial(){
+        int i =0;
+        Empresa emp;
+        String[] partes;
+        String auxBusca = "";
+        MesEmpresa mesEmpresa = (MesEmpresa) tblVlwMesEmpresa.getSelectionModel().getSelectedItem();
+        emp = mesEmpresa.getEmpresa();
+        partes = emp.getCnpj().split("");
+        for(String st: partes){
+            if(i<8)
+            auxBusca = auxBusca.concat(partes[i]);
+            System.out.println(partes[i]);
+            i++;
+        }
+        System.out.println(auxBusca);
+       List<Empresa> lstempresa = new ArrayList<Empresa>();
+       lstempresa = empresaRepository.findByCnpjLikeIgnoreCase(auxBusca);
+       tblVlwMesEmpresa.refresh();
+          tblVlwMesEmpresa.setItems(FXCollections.observableList(lstempresa));
+           tblVlwMesEmpresa.refresh();
+       for(Empresa st: lstempresa){
+            System.out.println(st.getRazaoSocial());
+        }
+    
 
     }
 
